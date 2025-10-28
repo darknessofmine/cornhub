@@ -1,5 +1,5 @@
-import type React from "react";
-import { Outlet } from "react-router-dom";
+import type React from 'react';
+import { Outlet } from 'react-router-dom';
 
 
 export const MainLayout: React.FC = () => {
@@ -8,5 +8,5 @@ export const MainLayout: React.FC = () => {
             <>navMenu</>
             <Outlet/>
         </>
-    )
+    );
 }
