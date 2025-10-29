@@ -117,14 +117,24 @@
     font-size: 14px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: grey;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+
+ .forgotPasswordButton {
+    transition: transform 0.1s ease-in-out, color 0.2s ease, text-decoration 0.2s ease;
  }
 
  .forgotPasswordButton:hover {
     cursor: pointer;
     text-decoration: underline;
+    transform: scale(1.05);
  }
 
  .forgotPasswordButton:active {
+    color: lightgrey;
     text-decoration: none;
  }
 
@@ -138,7 +148,7 @@
     background-color: rgb(107, 178, 180);
     border-radius: 8px;
     
-    transition: transform 0.07s ease-in-out;
+    transition: transform 0.07s ease-in-out, background-color 0.2s ease;
  }
 
  .enterButtonContainer button:hover {
