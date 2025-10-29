@@ -5,7 +5,8 @@ import './App.css'
 import { HomePage } from './components/home-page/HomePage';
 import { LoginPage } from './components/login-page/LoginPage';
 import { MainLayout } from './components/common/main-layout/MainLayout';
-import { PageNotFound } from './components/common/page-not-found/PageNotFound';
+import { PageNotFound } from './components/page-not-found/PageNotFound';
+import { ProtectedRoute } from './components/common/protected-route/ProtectedRoute';
 
 
 const App: React.FC = () => {
@@ -15,7 +16,9 @@ const App: React.FC = () => {
         <Route path='/login' element={<LoginPage/>} />
 
         <Route path='/' element={<MainLayout/>}>
-          <Route path='/' element={<HomePage/>}/>
+          <Route path='/' element={<ProtectedRoute/>}>
+            <Route path='/' element={<HomePage/>}/>
+          </Route>
         </Route>
 
         <Route path='*' element={<PageNotFound/>}/>
