@@ -5,10 +5,12 @@ import { NavMenu } from '../../nav-menu/NavMenu';
 
 
 export const MainLayout: React.FC = () => {
-    return (
-        <>
-            <NavMenu/>
-            <Outlet/>
-        </>
-    );
+  return (
+    <>
+      <NavMenu/>
+      <main>
+        <Outlet/>
+      </main>
+    </>
+  );
 }
