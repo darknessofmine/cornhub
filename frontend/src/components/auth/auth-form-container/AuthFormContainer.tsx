@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './AuthFormContainer.module.css'
+import styles from './AuthFormContainer.module.css';
 
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
   heightNew: string;
 };
 
-type PropsWithChildren = React.PropsWithChildren<Props> 
+type PropsWithChildren = React.PropsWithChildren<Props>;
 
 
 export const AuthFormContainer: React.FC<PropsWithChildren> = ({
@@ -19,12 +19,12 @@ export const AuthFormContainer: React.FC<PropsWithChildren> = ({
   const [containerHeight, setContainerHeight] = React.useState(heightOld || heightNew);
 
   React.useEffect(() => {
-    if (!heightOld) return
+    if (!heightOld) return;
 
     const timer = setTimeout(() => {
       setContainerHeight(heightNew);
     }, 10);
-    return () => clearTimeout(timer)
+    return () => clearTimeout(timer);
   }, []);
 
   return (
@@ -38,7 +38,7 @@ export const AuthFormContainer: React.FC<PropsWithChildren> = ({
               CORN
               <div className={styles.headerSecondPart} >HUB</div>
             </div>
-          <div className={styles.formContentContainer}>
+          <div className={styles.formContentContainer} >
             {children}
           </div>
         </div>

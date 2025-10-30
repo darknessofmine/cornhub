@@ -22,7 +22,7 @@ export const LoginPage: React.FC = () => {
       navigate(
         location.pathname,
         { replace: true, state: {} },
-    );
+      );
     }
   }, [navigate]);
 
@@ -33,13 +33,12 @@ export const LoginPage: React.FC = () => {
     });
   };
 
-  const handleForgotPasswordClick = () => {};
+  const handleForgotPasswordClick = () => {
+    navigate('/forgot-password', { state: { from: location.pathname } });
+  };
 
   const handleSignUpButtonClick = () => {
-    navigate(
-      '/signup',
-      { state: { from: location.pathname } },
-    );
+    navigate('/signup', { state: { from: location.pathname } });
   };
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
@@ -52,8 +51,8 @@ export const LoginPage: React.FC = () => {
         switch (location.state?.from) {
           case '/signup':
             return styles.signupPageHeight;
-          case '/reset-password':
-            return styles.resetPageHeight;
+          case '/forgot-password':
+            return styles.forgotPasswordPageHeight;
           default:
             return null;
         }

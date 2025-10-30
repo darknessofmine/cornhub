@@ -1,6 +1,6 @@
 import type React from 'react';
 
-import styles from './ButtonText.module.css'
+import styles from './ButtonText.module.css';
 
 
 interface Props {
@@ -16,5 +16,5 @@ export const ButtonText: React.FC<Props> = ({buttonLabel, handleClick}) => {
         {buttonLabel}
       </button>
     </div>
-  )
+  );
 } 

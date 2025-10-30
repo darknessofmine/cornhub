@@ -15,8 +15,12 @@
     height: 390px;
 }
 
-.resetPageHeight {
+.forgotPasswordPageHeight {
     height: 310px;
+}
+
+.resetPasswordPageHeight {
+    height: 390px;
 }
 
 .signupFormTitle {

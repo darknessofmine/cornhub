@@ -1,27 +1,19 @@
 import React, { type ChangeEvent, type FormEvent } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import styles from './SignupPage.module.css';
+import styles from './ForgotPasswordPage.module.css';
 import { AuthFormContainer } from '../auth-form-container/AuthFormContainer';
 import { ButtonSubmit } from '../button-confirm/ButtonSubmit';
 import { ButtonText } from '../button-text/ButtonText';
 import { FormInput } from '../form-input/FormInput';
 
 
-interface SingupForm {
-  email: string;
-  username: string;
-  password: string;
-  passwordRepeat: string,
-};
+interface ForgotPasswordForm { email: string };
 
 
-export const SignupPage: React.FC = () => {
-  const [signupForm, setSignupForm] = React.useState<SingupForm>({
+export const ForgotPasswordPage: React.FC = () => {
+  const [forgotPasswordForm, setForgotPasswordForm] = React.useState<ForgotPasswordForm>({
     email: '',
-    username: '',
-    password: '',
-    passwordRepeat: '',
   });
 
   const navigate = useNavigate();
@@ -32,23 +24,23 @@ export const SignupPage: React.FC = () => {
       navigate(
         location.pathname,
         { replace: true, state: {} },
-    );
+      );
     }
   }, [navigate]);
 
   const handleFormChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    setSignupForm({
-      ...signupForm,
+    setForgotPasswordForm({
+      ...forgotPasswordForm,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleBackButtonClick = (): void => {
-    navigate('/login', { state: { from: location.pathname} });
-  };
-
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
+  };
+
+  const handleBackButtonClick = (): void => {
+    navigate('/login', { state: { from: location.pathname } });
   };
 
   return (
@@ -57,52 +49,34 @@ export const SignupPage: React.FC = () => {
         switch (location.state?.from) {
           case '/login':
             return styles.loginPageHeight;
-          case '/password-reset':
-            return styles.resetPageHeight;
+          case '/signup':
+            return styles.signupPageHeight;
+          case '/reset-password':
+            return styles.resetPasswordPageHeight;
           default:
             return null;
         }
       }}
-      heightNew={styles.signupPageHeight}
+      heightNew={styles.forgotPasswordPageHeight}
     >
-      <div className={styles.signupFormTitle}>Sign up</div>
+      <div className={styles.forgotPasswordFormTitle}>Send verification code</div>
       <form
-        id="signupForm"
-        className={styles.signupForm}
+        id="forgotPasswordForm"
+        className={styles.forgotPasswordForm}
         onSubmit={handleFormSubmit}
       >
-        <div className={styles.signupFormContent} >
+        <div className={styles.forgotPasswordFormContent} >
           <FormInput
             name='email'
             label='Email:'
             placeholder='enter your email'
             handleChange={handleFormChange}
           />
-          <FormInput
-            name='username'
-            label='Username:'
-            placeholder='enter your username'
-            handleChange={handleFormChange}
-          />
-          <FormInput
-            name='password'
-            type='password'
-            label='Password:'
-            placeholder='enter your password'
-            handleChange={handleFormChange}
-          />
-          <FormInput
-            name='passwordRepeat'
-            type='password'
-            label='Repeat password:'
-            placeholder='repeat your password'
-            handleChange={handleFormChange}
-          />
         </div>
 
         <div className={styles.formFooterButtonsContainer}>
           <ButtonText buttonLabel='Back' handleClick={handleBackButtonClick}/>
-          <ButtonSubmit buttonLabel='Sign up' forForm='signupForm'/>
+          <ButtonSubmit buttonLabel='Send code' forForm='forgotPasswordForm'/>
         </div>
       </form>
     </AuthFormContainer>

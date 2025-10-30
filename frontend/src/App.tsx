@@ -7,6 +7,7 @@ import { MainLayout } from './components/common/main-layout/MainLayout';
 import { PageNotFound } from './components/page-not-found/PageNotFound';
 import { ProtectedRoute } from './components/common/protected-route/ProtectedRoute';
 
+import { ForgotPasswordPage } from './components/auth/forgot-password-page/ForgotPasswordPage';
 import { LoginPage } from './components/auth/login-page/LoginPage';
 import { SignupPage } from './components/auth/signup-page/SignupPage';
 
@@ -17,17 +18,18 @@ const App: React.FC = () => {
       <Routes>
         <Route path='/login' element={<LoginPage/>} />
         <Route path='/signup' element={<SignupPage/>} />
+        <Route path='/forgot-password' element={<ForgotPasswordPage/>} />
 
 
-        <Route path='/' element={<MainLayout/>}>
+        <Route path='/' element={<MainLayout/>} >
 
-          <Route path='/' element={<ProtectedRoute/>}>
-            <Route path='/' element={<HomePage/>}/>
+          <Route path='/' element={<ProtectedRoute/>} >
+            <Route path='/' element={<HomePage/>} />
           </Route>
   
         </Route>
 
-        <Route path='*' element={<PageNotFound/>}/>
+        <Route path='*' element={<PageNotFound/>} />
       </Routes>
     </BrowserRouter>
   );
