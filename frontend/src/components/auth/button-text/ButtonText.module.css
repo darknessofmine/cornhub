@@ -1,0 +1,29 @@
+.buttonContainer {
+    width: 140px;
+    height: 45px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonText {
+    width: fit-content;
+    
+    font-size: 22px;
+    font-weight: 400;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: white;
+    color: rgba(65, 107, 107, 0.7);
+
+    transition: transform 0.2s ease-in-out, color 0.2s ease;
+}
+
+.buttonText:hover {
+    transform: scale(1.1);
+    text-decoration: underline;
+}
+
+.buttonText:active {
+    color: lightgrey;
+}

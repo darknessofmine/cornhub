@@ -1,0 +1,66 @@
+.authFormPageContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100dvw;
+    height: 100dvh;
+    background-color: lightgrey;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.authFormContainer {
+    position: relative;
+    width: 500px;
+
+    background-color: white;
+    border-radius: 25px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+
+    transition: height 0.7s ease;
+}
+
+.authFormHeader {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 70px;
+
+    font-size: 40px;
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.authFormHeader .headerSecondPart {
+    width: 80px;
+
+    color: white;
+    background-color: brown;
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: center;
+}
+
+.authFormContainer .formContentContainer {
+    height: calc(100% - 70px);
+    width: 100%;
+    margin-top: 70px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
