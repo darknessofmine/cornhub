@@ -14,15 +14,24 @@ export const LoginPage: React.FC = () => {
     password: '',
   });
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  React.useEffect(() => {
+    if (location.state?.from) {
+      navigate(
+        location.pathname,
+        { replace: true, state: {} },
+    );
+    }
+  }, [navigate]);
+
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setLoginForm({
       ...loginForm,
       [e.target.name]: e.target.value,
     });
   };
-
-  const navigate = useNavigate();
-  const location = useLocation();
 
   const handleForgotPasswordClick = () => {};
 
@@ -38,7 +47,19 @@ export const LoginPage: React.FC = () => {
   };
 
   return (
-    <AuthFormContainer heightOld={styles.signupPageHeight} heightNew={styles.loginPageHeight}>
+    <AuthFormContainer
+      heightOld={() => {
+        switch (location.state?.from) {
+          case '/signup':
+            return styles.signupPageHeight;
+          case '/reset-password':
+            return styles.resetPageHeight;
+          default:
+            return null;
+        }
+      }}
+      heightNew={styles.loginPageHeight}
+    >
       <div className={styles.loginFormTitle}>Log in</div>
       <form
         id="loginForm"

@@ -56,7 +56,16 @@ export const SignupPage: React.FC = () => {
 
   return (
     <AuthFormContainer
-      heightOld={location.state?.from === '/login' ? styles.loginPageHeight : null}
+      heightOld={() => {
+        switch (location.state?.from) {
+          case '/login':
+            return styles.loginPageHeight
+          case '/password-reset':
+            return styles.resetPageHeight
+          default:
+            return null
+        }
+      }}
       heightNew={styles.signupPageHeight}
     >
       <div className={styles.signupFormTitle}>Sign up</div>

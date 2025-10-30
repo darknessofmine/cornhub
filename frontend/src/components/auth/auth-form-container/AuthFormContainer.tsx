@@ -4,7 +4,7 @@ import styles from './AuthFormContainer.module.css'
 
 
 interface Props {
-  heightOld?: string | null;
+  heightOld?: (() => string | undefined | null) | string | null;
   heightNew: string;
 };
 
