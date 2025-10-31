@@ -53,8 +53,10 @@ export const LoginPage: React.FC = () => {
             return styles.signupPageHeight;
           case '/forgot-password':
             return styles.forgotPasswordPageHeight;
+          case '/forgot-password/verification':
+            return styles.forgotPasswordVerificationPageHeight;
           default:
-            return null;
+            return styles.loginPageHeight;
         }
       }}
       heightNew={styles.loginPageHeight}

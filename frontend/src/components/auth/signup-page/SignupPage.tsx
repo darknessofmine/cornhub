@@ -32,7 +32,7 @@ export const SignupPage: React.FC = () => {
       navigate(
         location.pathname,
         { replace: true, state: {} },
-    );
+      );
     }
   }, [navigate]);
 
@@ -57,10 +57,12 @@ export const SignupPage: React.FC = () => {
         switch (localStorage.getItem('lastVisitedPage')) {
           case '/login':
             return styles.loginPageHeight;
-          case '/password-reset':
-            return styles.resetPageHeight;
+          case '/forgot-password':
+            return styles.forgotPasswordPageHeight;
+          case '/forgot-password/verification':
+            return styles.forgotPasswordVerificationPageHeight;
           default:
-            return null;
+            return styles.signupPageHeight;
         }
       }}
       heightNew={styles.signupPageHeight}

@@ -10,6 +10,7 @@ import { ProtectedRoute } from './components/common/protected-route/ProtectedRou
 import { ForgotPasswordPage } from './components/auth/forgot-password-page/ForgotPasswordPage';
 import { LoginPage } from './components/auth/login-page/LoginPage';
 import { SignupPage } from './components/auth/signup-page/SignupPage';
+import { VerificationPage } from './components/auth/verification-page/VerificationPage';
 
 
 const App: React.FC = () => {
@@ -19,7 +20,7 @@ const App: React.FC = () => {
         <Route path='/login' element={<LoginPage/>} />
         <Route path='/signup' element={<SignupPage/>} />
         <Route path='/forgot-password' element={<ForgotPasswordPage/>} />
-
+        <Route path='/forgot-password/verification' element={<VerificationPage/>} />
 
         <Route path='/' element={<MainLayout/>} >
 

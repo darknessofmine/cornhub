@@ -37,6 +37,8 @@ export const ForgotPasswordPage: React.FC = () => {
 
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
+    localStorage.removeItem('newCodeTimerStarted')
+    navigate('/forgot-password/verification', { state: { from: location.pathname } })
   };
 
   const handleBackButtonClick = (): void => {
@@ -51,15 +53,15 @@ export const ForgotPasswordPage: React.FC = () => {
             return styles.loginPageHeight;
           case '/signup':
             return styles.signupPageHeight;
-          case '/reset-password':
+          case '/forgot-password/verification':
             return styles.resetPasswordPageHeight;
           default:
-            return null;
+            return styles.forgotPasswordPageHeight;
         }
       }}
       heightNew={styles.forgotPasswordPageHeight}
     >
-      <div className={styles.forgotPasswordFormTitle}>Send verification code</div>
+      <div className={styles.forgotPasswordFormTitle}>Forgot password?</div>
       <form
         id="forgotPasswordForm"
         className={styles.forgotPasswordForm}

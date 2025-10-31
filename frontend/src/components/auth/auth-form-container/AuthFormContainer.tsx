@@ -22,6 +22,7 @@ export const AuthFormContainer: React.FC<PropsWithChildren> = ({
   const location = useLocation()
 
   React.useEffect(() => {
+    localStorage.setItem('secondLastPage', localStorage.getItem('lastVisitedPage') || '')
     localStorage.setItem('lastVisitedPage', location.pathname)
   }, [location.pathname])
 
@@ -32,7 +33,7 @@ export const AuthFormContainer: React.FC<PropsWithChildren> = ({
       setContainerHeight(heightNew);
     }, 10);
     return () => clearTimeout(timer);
-  }, []);
+  }, [heightOld, heightNew]);
 
   return (
     <main>

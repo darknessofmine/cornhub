@@ -27,7 +27,7 @@
     height: 390px;
 }
 
-.loginFormTitle {
+.verificationFormTitle {
     width: 100%;
     height: 40px;
 
@@ -42,7 +42,7 @@
     animation: fade-in 0.9s ease-in;
 }
 
-.loginForm {
+.verificationForm {
     width: 80%;
     height: calc(100% - 40px);
 
@@ -54,7 +54,7 @@
     animation: fade-in 0.9s ease-in;
 }
 
-.loginFormContent {
+.verificationFormContent {
     position: relative;
     width: 90%;
     height: calc(100% - 100px);
@@ -63,8 +63,23 @@
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+}
+
+.verificationNotation {
+    width: 90%;
+    height: 60px;
+
+    font-size: 18px;
+    font-weight: 400;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: grey;
+    text-align: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: end;
 }
 
 .formFooterButtonsContainer {
@@ -77,31 +92,36 @@
     align-items: center;
 }
 
-.forgotPasswordButtonContainer {
+
+.newCodeButtonContainer {
     position: absolute;
     bottom: 0px;
     right: 5px;
 
     font-size: 15px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: grey;
+    color: gray;
 
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.forgotPasswordButton {
+.newCodeButton {
     transition: transform 0.1s ease-in-out, color 0.2s ease;
 }
 
-.forgotPasswordButton:hover {
+.newCodeButton:hover {
     cursor: pointer;
     text-decoration: underline;
     transform: scale(1.05);
 }
 
-.forgotPasswordButton:active {
+.newCodeButton:active {
     color: lightgrey;
     text-decoration: none;
+}
+
+.newCodeTimer {
+    color: rgb(180, 180, 180);
 }
