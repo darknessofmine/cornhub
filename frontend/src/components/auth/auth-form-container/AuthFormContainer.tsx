@@ -1,6 +1,7 @@
 import React from 'react';
 
 import styles from './AuthFormContainer.module.css';
+import { useLocation } from 'react-router-dom';
 
 
 interface Props {
@@ -16,7 +17,13 @@ export const AuthFormContainer: React.FC<PropsWithChildren> = ({
   heightNew,
   children,
 }) => {
+
   const [containerHeight, setContainerHeight] = React.useState(heightOld || heightNew);
+  const location = useLocation()
+
+  React.useEffect(() => {
+    localStorage.setItem('lastVisitedPage', location.pathname)
+  }, [location.pathname])
 
   React.useEffect(() => {
     if (!heightOld) return;

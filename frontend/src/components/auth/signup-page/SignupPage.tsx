@@ -54,7 +54,7 @@ export const SignupPage: React.FC = () => {
   return (
     <AuthFormContainer
       heightOld={() => {
-        switch (location.state?.from) {
+        switch (localStorage.getItem('lastVisitedPage')) {
           case '/login':
             return styles.loginPageHeight;
           case '/password-reset':
