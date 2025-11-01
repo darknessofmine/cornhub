@@ -29,24 +29,21 @@ export const AuthFormContainer: React.FC<PropsWithChildren> = ({
   React.useEffect(() => {
     if (!heightOld) return;
 
-    const timer = setTimeout(() => {
+    const timeout = setTimeout(() => {
       setContainerHeight(heightNew);
     }, 10);
-    return () => clearTimeout(timer);
+    return () => clearTimeout(timeout);
   }, [heightOld, heightNew]);
 
   return (
     <main>
-      <div className={styles.authFormPageContainer} >
-        <div className={`
-          ${styles.authFormContainer} 
-          ${containerHeight}
-        `} >
-          <div className={styles.authFormHeader} >
+      <div className={styles.authFormPageContainer}>
+        <div className={`${styles.authFormContainer} ${containerHeight}`}>
+          <div className={styles.authFormHeader}>
               CORN
               <div className={styles.headerSecondPart} >HUB</div>
             </div>
-          <div className={styles.formContentContainer} >
+          <div className={styles.formContentContainer}>
             {children}
           </div>
         </div>

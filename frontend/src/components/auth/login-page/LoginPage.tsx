@@ -9,6 +9,9 @@ import { FormInput } from '../form-input/FormInput';
 
 
 export const LoginPage: React.FC = () => {
+  const [isUsernameValid, setIsUsernameValid] = React.useState<boolean>(true)
+  const [isPasswordValid, setIsPasswordValid] = React.useState<boolean>(true)
+
   const [loginForm, setLoginForm] = React.useState({
     username: '',
     password: '',
@@ -41,8 +44,30 @@ export const LoginPage: React.FC = () => {
     navigate('/signup', { state: { from: location.pathname } });
   };
 
-  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): () => void => {
     e.preventDefault();
+    setIsUsernameValid(true)
+    setIsPasswordValid(true)
+    
+    const timeout = setTimeout(() => {
+      if (!validateFormFields()) {
+        return;
+      }
+      console.log('Validation passed');
+    }, 10);
+    return () => clearTimeout(timeout);
+  };
+
+  const validateFormFields = (): boolean => {
+    if (!loginForm.username) {
+      setIsUsernameValid(false);
+      return false;
+    }
+    if (!loginForm.password) {
+      setIsPasswordValid(false);
+      return false;
+    }
+    return true;
   };
 
   return (
@@ -72,6 +97,7 @@ export const LoginPage: React.FC = () => {
             name='username'
             label='Username or email:'
             placeholder='enter your username or email'
+            isValid={isUsernameValid}
             handleChange={handleFormChange}
           />
           <FormInput
@@ -79,6 +105,7 @@ export const LoginPage: React.FC = () => {
             type='password'
             label='Password:'
             placeholder='enter your password'
+            isValid={isPasswordValid}
             handleChange={handleFormChange}
           />
             <div className={styles.forgotPasswordButtonContainer} >

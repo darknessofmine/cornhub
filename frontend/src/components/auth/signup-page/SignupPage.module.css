@@ -55,6 +55,7 @@
 }
 
 .signupFormContent {
+    position: relative;
     width: 90%;
     height: calc(100% - 100px);
 
@@ -64,6 +65,33 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.passwordsDontMatchNotificationContainer {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: opacity 0.3s ease-in-out;
+}
+
+.notificationVisible {
+    opacity: 1;
+}
+
+.notificationHidden {
+    opacity: 0;
+}
+
+.passwordsDontMatchNotification {
+    font-size: 15px;
+    font-weight: 500;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: rgba(187, 95, 95, 0.8);
 }
 
 .formFooterButtonsContainer {

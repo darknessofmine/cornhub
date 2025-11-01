@@ -7,11 +7,15 @@ import { ButtonSubmit } from '../button-confirm/ButtonSubmit';
 import { ButtonText } from '../button-text/ButtonText';
 import { FormInput } from '../form-input/FormInput';
 
+import { validateEmail } from '../../../utils/validationUtils';
+
 
 interface ForgotPasswordForm { email: string };
 
 
 export const ForgotPasswordPage: React.FC = () => {
+  const [isEmailValid, setIsEmailValid] = React.useState<boolean>(true)
+
   const [forgotPasswordForm, setForgotPasswordForm] = React.useState<ForgotPasswordForm>({
     email: '',
   });
@@ -35,10 +39,19 @@ export const ForgotPasswordPage: React.FC = () => {
     });
   };
 
-  const handleFormSubmit = (e: FormEvent<HTMLFormElement>): void => {
+  const handleFormSubmit = (e: FormEvent<HTMLFormElement>): () => void => {
     e.preventDefault();
-    localStorage.removeItem('newCodeTimerStarted')
-    navigate('/forgot-password/verification', { state: { from: location.pathname } })
+    setIsEmailValid(true);
+
+    const timeout = setTimeout(() => {
+      if (!validateEmail(forgotPasswordForm.email)) {
+        setIsEmailValid(false);
+        return;
+      }
+      localStorage.removeItem('newCodeTimerStarted');
+      navigate('/forgot-password/verification', { state: { from: location.pathname } });
+    }, 10);
+    return () => clearTimeout(timeout);
   };
 
   const handleBackButtonClick = (): void => {
@@ -67,11 +80,12 @@ export const ForgotPasswordPage: React.FC = () => {
         className={styles.forgotPasswordForm}
         onSubmit={handleFormSubmit}
       >
-        <div className={styles.forgotPasswordFormContent} >
+        <div className={styles.forgotPasswordFormContent}>
           <FormInput
             name='email'
             label='Email:'
             placeholder='enter your email'
+            isValid={isEmailValid}
             handleChange={handleFormChange}
           />
         </div>

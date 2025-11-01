@@ -8,10 +8,16 @@ import { ButtonSubmit } from '../button-confirm/ButtonSubmit';
 import { FormInput } from '../form-input/FormInput';
 
 
-export const VerificationPage: React.FC = () => {
-  const [isSendButtonActive, setIsSendButtonActive] = React.useState<boolean>(false)
-  const [sendTimer, setSendTimer] = React.useState<number>(60)
+interface VerificationForm { verificationCode: string };
 
+
+export const VerificationPage: React.FC = () => {
+  const [isVerificationValid, setIsVerificationValid] = React.useState<boolean>(true);
+  const [verificationForm, setVerificationForm] = React.useState<VerificationForm>({
+    verificationCode: '',
+  });
+  const [isSendButtonActive, setIsSendButtonActive] = React.useState<boolean>(false);
+  const [sendTimer, setSendTimer] = React.useState<number>(60);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -21,17 +27,19 @@ export const VerificationPage: React.FC = () => {
       localStorage.setItem('lastVisitedPage', localStorage.getItem('secondLastPage') || '');
       navigate('/forgot-password', { state: {} });
     }
+  }, []);
 
+  React.useEffect(() => {
     const timerStarted = localStorage.getItem('newCodeTimerStarted');
-    if (timerStarted) {
+    if (!timerStarted) {
+      localStorage.setItem('newCodeTimerStarted', new Date().getTime().toString());
+    } else {
       const secondsPassed = Math.floor((new Date().getTime() - Number(timerStarted)) / 1000);
       if (secondsPassed < 60) {
         setSendTimer(60 - secondsPassed);
       } else {
         setIsSendButtonActive(true);
       }
-    } else {
-      localStorage.setItem('newCodeTimerStarted', new Date().getTime().toString());
     }
   }, []);
 
@@ -49,10 +57,22 @@ export const VerificationPage: React.FC = () => {
     }
   }, [isSendButtonActive, sendTimer]);
  
-  const handleFormChange = (e: ChangeEvent<HTMLInputElement>): void => {};
+  const handleFormChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    setVerificationForm({ verificationCode: e.target.value});
+  };
 
-  const handleFormSubmit = (e: FormEvent<HTMLFormElement>): void => {
+  const handleFormSubmit = (e: FormEvent<HTMLFormElement>): () => void => {
     e.preventDefault();
+    setIsVerificationValid(true);
+
+    const timeout = setTimeout(() => {
+      if (!verificationForm.verificationCode) {
+        setIsVerificationValid(false);
+        return;
+      }
+      console.log('Verification passed');
+    }, 10);
+    return () => clearTimeout(timeout);
   };
 
   const handleNewCodeButtonClick = (): void => {
@@ -81,13 +101,13 @@ export const VerificationPage: React.FC = () => {
       }}
       heightNew={styles.forgotPasswordVerificationPageHeight}
     >
-      <div className={styles.verificationFormTitle}>Verification</div>
+      <div className={styles.verificationFormTitle} >Verification</div>
       <form
         id="verificationForm"
         className={styles.verificationForm}
         onSubmit={handleFormSubmit}
       >
-        <div className={styles.verificationFormContent} >
+        <div className={styles.verificationFormContent}>
           <div className={styles.verificationNotation}>
             Verification code has been sent to you, please check your email.
           </div>
@@ -95,20 +115,20 @@ export const VerificationPage: React.FC = () => {
           <FormInput
             name='verificationCode'
             label='Verification code:'
+            value={verificationForm.verificationCode}
             placeholder='enter your verification code'
+            isValid={isVerificationValid}
+            autoComplete='off'
             handleChange={handleFormChange}
           />
 
-          <div className={styles.newCodeButtonContainer} >
+          <div className={styles.newCodeButtonContainer}>
             {
               isSendButtonActive
-              ? <div
-                  className={styles.newCodeButton}
-                  onClick={handleNewCodeButtonClick}
-                >
+              ? <div className={styles.newCodeButton} onClick={handleNewCodeButtonClick}>
                   Send new verification code
                 </div>
-              : <div className={styles.newCodeTimer} >
+              : <div className={styles.newCodeTimer}>
                   New code will be available in: {sendTimer}s
                 </div>
             }
