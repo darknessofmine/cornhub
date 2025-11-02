@@ -70,7 +70,8 @@ export const VerificationPage: React.FC = () => {
         setIsVerificationValid(false);
         return;
       }
-      console.log('Verification passed');
+      
+      navigate('/reset-password', {state: { from: location.pathname }})
     }, 10);
     return () => clearTimeout(timeout);
   };
@@ -115,7 +116,7 @@ export const VerificationPage: React.FC = () => {
           <FormInput
             name='verificationCode'
             label='Verification code:'
-            value={verificationForm.verificationCode}
+            // value={verificationForm.verificationCode}
             placeholder='enter your verification code'
             isValid={isVerificationValid}
             autoComplete='off'

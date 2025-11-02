@@ -8,7 +8,6 @@ interface Props {
   heightOld?: (() => string | undefined | null) | string | null,
   heightNew: string,
 };
-
 type PropsWithChildren = React.PropsWithChildren<Props>;
 
 
@@ -22,8 +21,8 @@ export const AuthFormContainer: React.FC<PropsWithChildren> = ({
   const location = useLocation();
 
   React.useEffect(() => {
-    localStorage.setItem('secondLastPage', localStorage.getItem('lastVisitedPage') || '')
-    localStorage.setItem('lastVisitedPage', location.pathname)
+    localStorage.setItem('secondLastPage', localStorage.getItem('lastVisitedPage') || '');
+    localStorage.setItem('lastVisitedPage', location.pathname);
   }, [location.pathname]);
 
   React.useEffect(() => {

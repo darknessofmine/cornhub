@@ -10,6 +10,7 @@ import { ForgotPasswordPage } from './components/auth/forgot-password-page/Forgo
 import { HomePage } from './components/home-page/HomePage';
 import { LoginPage } from './components/auth/login-page/LoginPage';
 import { PageNotFound } from './components/page-not-found/PageNotFound';
+import { ResetPasswordPage } from './components/auth/reset-password-page/ResetPasswordPage';
 import { SignupPage } from './components/auth/signup-page/SignupPage';
 import { VerificationPage } from './components/auth/verification-page/VerificationPage';
 
@@ -23,6 +24,7 @@ const App: React.FC = () => {
           <Route path='/signup' element={<SignupPage/>}/>
           <Route path='/forgot-password' element={<ForgotPasswordPage/>}/>
           <Route path='/forgot-password/verification' element={<VerificationPage/>}/>
+          <Route path='/reset-password' element={<ResetPasswordPage/>}/>
         </Route>
 
         <Route path='/' element={<MainLayout/>}>
