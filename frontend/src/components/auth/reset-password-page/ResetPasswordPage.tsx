@@ -121,19 +121,9 @@ export const ResetPasswordPage: React.FC = () => {
             label='Repeat password:'
             placeholder='repeat your password'
             isValid={isPasswordRepeatValid}
+            notificationMessage='Passwords do not match'
             handleChange={handleFormChange}
           />
-
-          <div className={
-            `${styles.passwordsDontMatchNotificationContainer}
-            ${isPasswordRepeatValid
-              ? styles.notificationHidden
-              : styles.notificationVisible}`
-          }>
-            <div className={styles.passwordsDontMatchNotification}>
-              Passwords do not match!
-            </div>
-          </div>
         </div>
 
         <div className={styles.formFooterButtonsContainer}>

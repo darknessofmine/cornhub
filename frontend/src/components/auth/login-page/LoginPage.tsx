@@ -26,11 +26,11 @@ export const LoginPage: React.FC = () => {
     });
   };
 
-  const handleForgotPasswordClick = () => {
+  const handleForgotPasswordClick = (): void => {
     navigate('/forgot-password', { state: { from: location.pathname } });
   };
 
-  const handleSignUpButtonClick = () => {
+  const handleSignUpButtonClick = (): void => {
     navigate('/signup', { state: { from: location.pathname } });
   };
 
@@ -85,8 +85,8 @@ export const LoginPage: React.FC = () => {
         <div className={styles.loginFormContent} >
           <FormInput
             name='username'
-            label='Username or email:'
-            placeholder='enter your username or email'
+            label='Username:'
+            placeholder='enter your username'
             isValid={isUsernameValid}
             handleChange={handleFormChange}
           />
@@ -103,7 +103,7 @@ export const LoginPage: React.FC = () => {
                 className={styles.forgotPasswordButton}
                 onClick={handleForgotPasswordClick}
               >
-                forgot passowrd?
+                forgot password?
               </div>
             </div>
         </div>

@@ -7,7 +7,7 @@ import { ButtonSubmit } from '../button-confirm/ButtonSubmit';
 import { ButtonText } from '../button-text/ButtonText';
 import { FormInput } from '../form-input/FormInput';
 
-import { validateEmail } from '../../../utils/validationUtils';
+import { validateEmail, validateInputField } from '../../../utils/validationUtils';
 
 
 interface ForgotPasswordForm { email: string };
@@ -15,12 +15,26 @@ interface ForgotPasswordForm { email: string };
 
 export const ForgotPasswordPage: React.FC = () => {
   const [isEmailValid, setIsEmailValid] = React.useState<boolean>(true);
+  const [emailFieldMesasge, setEmailFieldMessage] = React.useState<string>('');
   const navigate = useNavigate();
   const location = useLocation();
 
   const [forgotPasswordForm, setForgotPasswordForm] = React.useState<ForgotPasswordForm>({
     email: '',
   });
+
+  React.useEffect(() => {
+    if (
+      validateInputField(forgotPasswordForm.email) &&
+      !(validateEmail(forgotPasswordForm.email))
+    ) {
+      setEmailFieldMessage('Invalid email');
+      setIsEmailValid(false);
+    } else {
+      setEmailFieldMessage('');
+      setIsEmailValid(true);
+    }
+  }, [forgotPasswordForm.email]);
   
   const handleFormChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setForgotPasswordForm({
@@ -34,7 +48,14 @@ export const ForgotPasswordPage: React.FC = () => {
     setIsEmailValid(true);
 
     const timeout = setTimeout(() => {
+      if (!validateInputField(forgotPasswordForm.email)) {
+        setEmailFieldMessage('');
+        setIsEmailValid(false);
+        return;
+      }
+
       if (!validateEmail(forgotPasswordForm.email)) {
+        setEmailFieldMessage('Invalid email')
         setIsEmailValid(false);
         return;
       }
@@ -76,6 +97,7 @@ export const ForgotPasswordPage: React.FC = () => {
             label='Email:'
             placeholder='enter your email'
             isValid={isEmailValid}
+            notificationMessage={emailFieldMesasge}
             handleChange={handleFormChange}
           />
         </div>

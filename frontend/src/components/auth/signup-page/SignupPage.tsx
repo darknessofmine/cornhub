@@ -7,7 +7,7 @@ import { ButtonSubmit } from '../button-confirm/ButtonSubmit';
 import { ButtonText } from '../button-text/ButtonText';
 import { FormInput } from '../form-input/FormInput';
 
-import { validateEmail } from '../../../utils/validationUtils';
+import { validateEmail, validateInputField } from '../../../utils/validationUtils';
 
 
 interface SingupForm {
@@ -24,6 +24,8 @@ export const SignupPage: React.FC = () => {
   const [isUsernameValid, setIsUsernameValid] = React.useState<boolean>(true);
   const [isPasswordValid, setIsPasswordValid] = React.useState<boolean>(true);
   const [isPasswordRepeatValid, setIsPasswordRepeatValid] = React.useState<boolean>(true);
+
+  const [emailFieldMesasge, setEmailFieldMessage] = React.useState<string>('')
   
   const passwordTimeoutRef = React.useRef<PasswordTimeout | null>(null);
   const navigate = useNavigate();
@@ -39,6 +41,19 @@ export const SignupPage: React.FC = () => {
   React.useEffect(() => {
     setIsPasswordRepeatValid(signupForm.password === signupForm.passwordRepeat);
   }, [signupForm.password, signupForm.passwordRepeat]);
+
+  React.useEffect(() => {
+    if (
+      validateInputField(signupForm.email) &&
+      !(validateEmail(signupForm.email))
+    ) {
+      setEmailFieldMessage('Invalid email');
+      setIsEmailValid(false);
+    } else {
+      setEmailFieldMessage('');
+      setIsEmailValid(true);
+    }
+  }, [signupForm.email]);
 
   const handleFormChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setSignupForm({
@@ -72,7 +87,13 @@ export const SignupPage: React.FC = () => {
   };
 
   const validateFormFields = (): boolean => {
+    if (!validateInputField(signupForm.email)){
+      setEmailFieldMessage('');
+      setIsEmailValid(false);
+      return false;
+    }
     if (!validateEmail(signupForm.email)) {
+      setEmailFieldMessage('Invalid email');
       setIsEmailValid(false);
       return false;
     }
@@ -126,6 +147,7 @@ export const SignupPage: React.FC = () => {
             label='Email:'
             placeholder='enter your email'
             isValid={isEmailValid}
+            notificationMessage={emailFieldMesasge}
             handleChange={handleFormChange}
           />
           <FormInput
@@ -149,19 +171,9 @@ export const SignupPage: React.FC = () => {
             label='Repeat password:'
             placeholder='repeat your password'
             isValid={isPasswordRepeatValid}
+            notificationMessage='Passwords do not match'
             handleChange={handleFormChange}
           />
-
-          <div className={
-              `${styles.passwordsDontMatchNotificationContainer}
-              ${isPasswordRepeatValid
-                ? styles.notificationHidden
-                : styles.notificationVisible}`
-            }>
-            <div className={styles.passwordsDontMatchNotification}>
-              Passwords do not match!
-            </div>
-          </div>
         </div>
 
         <div className={styles.formFooterButtonsContainer}>
