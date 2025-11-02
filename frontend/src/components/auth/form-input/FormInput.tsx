@@ -4,14 +4,14 @@ import styles from './FormInput.module.css';
 
 
 interface Props {
-  name: string;
-  type?: 'text' | 'password';
-  label: string;
-  value?: string
-  placeholder?: string;
-  isValid?: boolean;
-  autoComplete?: 'on' | 'off';
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void; 
+  name: string,
+  type?: 'text' | 'password',
+  label: string,
+  value?: string,
+  placeholder?: string,
+  isValid?: boolean,
+  autoComplete?: 'on' | 'off',
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
 };
 
 
@@ -30,7 +30,6 @@ export const FormInput: React.FC<Props> = ({
   React.useEffect(() => {
     if (!isValid) {
       setIsShaking(true);
-
       setTimeout(() => {
         setIsShaking(false);
       }, 300);

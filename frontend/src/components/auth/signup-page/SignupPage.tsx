@@ -11,9 +11,9 @@ import { validateEmail } from '../../../utils/validationUtils';
 
 
 interface SingupForm {
-  email: string;
-  username: string;
-  password: string;
+  email: string,
+  username: string,
+  password: string,
   passwordRepeat: string,
 };
 type PasswordTimeout = ReturnType<typeof setTimeout>;
@@ -35,15 +35,6 @@ export const SignupPage: React.FC = () => {
     password: '',
     passwordRepeat: '',
   });
-
-  React.useEffect(() => {
-    if (location.state?.from) {
-      navigate(
-        location.pathname,
-        { replace: true, state: {} },
-      );
-    }
-  }, [navigate]);
 
   React.useEffect(() => {
     setIsPasswordRepeatValid(signupForm.password === signupForm.passwordRepeat);

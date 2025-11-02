@@ -9,25 +9,15 @@ import { FormInput } from '../form-input/FormInput';
 
 
 export const LoginPage: React.FC = () => {
-  const [isUsernameValid, setIsUsernameValid] = React.useState<boolean>(true)
-  const [isPasswordValid, setIsPasswordValid] = React.useState<boolean>(true)
+  const [isUsernameValid, setIsUsernameValid] = React.useState<boolean>(true);
+  const [isPasswordValid, setIsPasswordValid] = React.useState<boolean>(true);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const [loginForm, setLoginForm] = React.useState({
     username: '',
     password: '',
   });
-
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  React.useEffect(() => {
-    if (location.state?.from) {
-      navigate(
-        location.pathname,
-        { replace: true, state: {} },
-      );
-    }
-  }, [navigate]);
 
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setLoginForm({

@@ -14,24 +14,14 @@ interface ForgotPasswordForm { email: string };
 
 
 export const ForgotPasswordPage: React.FC = () => {
-  const [isEmailValid, setIsEmailValid] = React.useState<boolean>(true)
+  const [isEmailValid, setIsEmailValid] = React.useState<boolean>(true);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const [forgotPasswordForm, setForgotPasswordForm] = React.useState<ForgotPasswordForm>({
     email: '',
   });
-
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  React.useEffect(() => {
-    if (location.state?.from) {
-      navigate(
-        location.pathname,
-        { replace: true, state: {} },
-      );
-    }
-  }, [navigate]);
-
+  
   const handleFormChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setForgotPasswordForm({
       ...forgotPasswordForm,
