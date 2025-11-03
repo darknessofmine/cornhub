@@ -1,10 +1,6 @@
 @keyframes fade-in {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+    from {opacity: 0;}
+    to   {opacity: 1;}
 }
 
 .signupPageHeight {
@@ -95,10 +91,10 @@
 
 .newCodeButtonContainer {
     position: absolute;
-    bottom: 0px;
+    bottom: 65px;
     right: 5px;
 
-    font-size: 15px;
+    font-size: 14px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: gray;
 

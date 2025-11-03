@@ -6,11 +6,14 @@ import { AuthFormContainer } from '../auth-form-container/AuthFormContainer';
 import { ButtonSubmit } from '../button-confirm/ButtonSubmit';
 import { ButtonText } from '../button-text/ButtonText';
 import { FormInput } from '../form-input/FormInput';
+import { NotificationPopupContext } from '../../../context/NotificationPopupContext';
 
 
 export const LoginPage: React.FC = () => {
   const [isUsernameValid, setIsUsernameValid] = React.useState<boolean>(true);
   const [isPasswordValid, setIsPasswordValid] = React.useState<boolean>(true);
+  
+  const notificationContext = React.useContext(NotificationPopupContext)
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -18,6 +21,23 @@ export const LoginPage: React.FC = () => {
     username: '',
     password: '',
   });
+
+  React.useEffect(() => {
+    const redirectedFrom = location.state?.from;
+    if (redirectedFrom === '/reset-password') {
+      notificationContext.setPopupMesage('Your password has been changed');
+      notificationContext.setIsOpened(true);
+    }
+  }, []);
+
+  React.useEffect(() => {
+    if (location.state?.from) {
+      navigate(
+        location.pathname,
+        { replace: true, state: {} },
+      );
+    }
+  }, [navigate]);
 
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setLoginForm({

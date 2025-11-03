@@ -55,8 +55,9 @@ export const ResetPasswordPage: React.FC = () => {
       if (!validateFormFields()) {
         return;
       }
-      console.log('Validation passed');
+      navigate('/login', { state: { from: location.pathname }, replace: true },)
     }, 10);
+  
     return () => {
       clearTimeout(timeout);
       if (passwordTimeoutRef.current) {

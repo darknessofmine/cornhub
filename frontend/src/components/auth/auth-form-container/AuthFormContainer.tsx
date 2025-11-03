@@ -2,6 +2,8 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 
 import styles from './AuthFormContainer.module.css';
+import { NotificationPopup } from '../../common/notification-popup/NotificationPopup';
+import { NotificationPopupContext } from '../../../context/NotificationPopupContext';
 
 
 interface Props {
@@ -14,15 +16,16 @@ type PropsWithChildren = React.PropsWithChildren<Props>;
 export const AuthFormContainer: React.FC<PropsWithChildren> = ({
   heightOld = null,
   heightNew,
-  children,
+  children ,
 }) => {
-
   const [containerHeight, setContainerHeight] = React.useState(heightOld || heightNew);
+  const notificationContext = React.useContext(NotificationPopupContext)
   const location = useLocation();
 
   React.useEffect(() => {
     localStorage.setItem('secondLastPage', localStorage.getItem('lastVisitedPage') || '');
     localStorage.setItem('lastVisitedPage', location.pathname);
+    notificationContext.setIsOpened(false);
   }, [location.pathname]);
 
   React.useEffect(() => {
@@ -47,6 +50,8 @@ export const AuthFormContainer: React.FC<PropsWithChildren> = ({
           </div>
         </div>
       </div>
+
+      <NotificationPopup/>
     </main>
   );
 }

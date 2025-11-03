@@ -8,14 +8,10 @@ import { ButtonSubmit } from '../button-confirm/ButtonSubmit';
 import { FormInput } from '../form-input/FormInput';
 
 
-interface VerificationForm { verificationCode: string };
-
-
 export const VerificationPage: React.FC = () => {
+  const [verificationCodeField, setVerificationCodeField] = React.useState<string>('');
   const [isVerificationValid, setIsVerificationValid] = React.useState<boolean>(true);
-  const [verificationForm, setVerificationForm] = React.useState<VerificationForm>({
-    verificationCode: '',
-  });
+  
   const [isSendButtonActive, setIsSendButtonActive] = React.useState<boolean>(false);
   const [sendTimer, setSendTimer] = React.useState<number>(60);
   const navigate = useNavigate();
@@ -58,7 +54,7 @@ export const VerificationPage: React.FC = () => {
   }, [isSendButtonActive, sendTimer]);
  
   const handleFormChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    setVerificationForm({ verificationCode: e.target.value});
+    setVerificationCodeField(e.target.value);
   };
 
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>): () => void => {
@@ -66,11 +62,10 @@ export const VerificationPage: React.FC = () => {
     setIsVerificationValid(true);
 
     const timeout = setTimeout(() => {
-      if (!verificationForm.verificationCode) {
+      if (!verificationCodeField) {
         setIsVerificationValid(false);
         return;
       }
-      
       navigate('/reset-password', {state: { from: location.pathname }})
     }, 10);
     return () => clearTimeout(timeout);
@@ -116,13 +111,11 @@ export const VerificationPage: React.FC = () => {
           <FormInput
             name='verificationCode'
             label='Verification code:'
-            // value={verificationForm.verificationCode}
             placeholder='enter your verification code'
             isValid={isVerificationValid}
             autoComplete='off'
             handleChange={handleFormChange}
           />
-
           <div className={styles.newCodeButtonContainer}>
             {
               isSendButtonActive
