@@ -41,7 +41,7 @@ export const FormInput: React.FC<Props> = ({
       }, 300);
       return () => clearTimeout(shakingTimeout);
     } else {
-      setIsNotificationVisible(false)
+      setIsNotificationVisible(false);
     }
   }, [isValid]);
 

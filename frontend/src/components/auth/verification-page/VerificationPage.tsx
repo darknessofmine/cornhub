@@ -82,21 +82,7 @@ export const VerificationPage: React.FC = () => {
   };
 
   return (
-    <AuthFormContainer
-      heightOld={() => {
-        switch (localStorage.getItem('lastVisitedPage')) {
-          case '/login':
-            return styles.loginPageHeight;
-          case '/signup':
-            return styles.signupPageHeight;
-          case '/forgot-password':
-            return styles.forgotPasswordPageHeight;
-          default:
-            return styles.forgotPasswordVerificationPageHeight;
-        }
-      }}
-      heightNew={styles.forgotPasswordVerificationPageHeight}
-    >
+    <AuthFormContainer defaultHeight={styles.forgotPasswordVerificationPageHeight}>
       <div className={styles.verificationFormTitle} >Verification</div>
       <form
         id="verificationForm"

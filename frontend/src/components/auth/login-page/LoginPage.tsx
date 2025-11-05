@@ -13,7 +13,7 @@ export const LoginPage: React.FC = () => {
   const [isUsernameValid, setIsUsernameValid] = React.useState<boolean>(true);
   const [isPasswordValid, setIsPasswordValid] = React.useState<boolean>(true);
   
-  const notificationContext = React.useContext(NotificationPopupContext)
+  const notificationContext = React.useContext(NotificationPopupContext);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -56,8 +56,8 @@ export const LoginPage: React.FC = () => {
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): () => void => {
     e.preventDefault();
-    setIsUsernameValid(true)
-    setIsPasswordValid(true)
+    setIsUsernameValid(true);
+    setIsPasswordValid(true);
     
     const timeout = setTimeout(() => {
       if (!validateFormFields()) {
@@ -81,21 +81,7 @@ export const LoginPage: React.FC = () => {
   };
 
   return (
-    <AuthFormContainer
-      heightOld={() => {
-        switch (localStorage.getItem('lastVisitedPage')) {
-          case '/signup':
-            return styles.signupPageHeight;
-          case '/forgot-password':
-            return styles.forgotPasswordPageHeight;
-          case '/forgot-password/verification':
-            return styles.forgotPasswordVerificationPageHeight;
-          default:
-            return styles.loginPageHeight;
-        }
-      }}
-      heightNew={styles.loginPageHeight}
-    >
+    <AuthFormContainer defaultHeight={styles.loginPageHeight}>
       <div className={styles.loginFormTitle}>Log in</div>
       <form
         id="loginForm"

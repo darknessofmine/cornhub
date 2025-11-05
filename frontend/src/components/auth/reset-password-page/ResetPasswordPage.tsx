@@ -85,22 +85,10 @@ export const ResetPasswordPage: React.FC = () => {
 
   const handleBackButtonClick = (): void => {
     navigate('/login', { state: { from: location.pathname } });
-  }; 
+  };
 
   return (
-    <AuthFormContainer
-      heightOld={() => {
-        switch (localStorage.getItem('lastVisitedPage')) {
-          case '/signup':
-            return styles.signupPageHeight;
-          case 'resetPasswordPageHeight':
-            return styles.resetPasswordPageHeight;
-          default:
-            return styles.resetPasswordPageHeight;
-        }
-      }}
-      heightNew={styles.resetPasswordPageHeight}
-    >
+    <AuthFormContainer defaultHeight={styles.resetPasswordPageHeight}>
       <div className={styles.resetPasswordTitle}>Reset password</div>
       <form
         id="loginForm"

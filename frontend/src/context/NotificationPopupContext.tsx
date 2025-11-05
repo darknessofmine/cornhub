@@ -8,9 +8,8 @@ interface NotificationContext {
   setPopupMesage: (message: string) => void,
 }
 
-interface Props {
-  children: React.ReactNode,
-}
+interface Props { children: React.ReactNode };
+
 
 const defaultNotificationContext: NotificationContext = {
   isOpened: false,

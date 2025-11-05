@@ -70,21 +70,7 @@ export const ForgotPasswordPage: React.FC = () => {
   };
 
   return (
-    <AuthFormContainer
-      heightOld={() => {
-        switch (localStorage.getItem('lastVisitedPage')) {
-          case '/login':
-            return styles.loginPageHeight;
-          case '/signup':
-            return styles.signupPageHeight;
-          case '/forgot-password/verification':
-            return styles.resetPasswordPageHeight;
-          default:
-            return styles.forgotPasswordPageHeight;
-        }
-      }}
-      heightNew={styles.forgotPasswordPageHeight}
-    >
+    <AuthFormContainer defaultHeight={styles.forgotPasswordPageHeight}>
       <div className={styles.forgotPasswordFormTitle}>Forgot password?</div>
       <form
         id="forgotPasswordForm"

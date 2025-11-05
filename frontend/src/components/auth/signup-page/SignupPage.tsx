@@ -118,23 +118,7 @@ export const SignupPage: React.FC = () => {
   };
 
   return (
-    <AuthFormContainer
-      heightOld={() => {
-        switch (localStorage.getItem('lastVisitedPage')) {
-          case '/login':
-            return styles.loginPageHeight;
-          case '/forgot-password':
-            return styles.forgotPasswordPageHeight;
-          case '/forgot-password/verification':
-            return styles.forgotPasswordVerificationPageHeight;
-          case '/reset-password':
-            return styles.resetPasswordPageHeight;
-          default:
-            return styles.signupPageHeight;
-        }
-      }}
-      heightNew={styles.signupPageHeight}
-    >
+    <AuthFormContainer defaultHeight={styles.signupPageHeight}>
       <div className={styles.signupFormTitle}>Sign up</div>
       <form
         id="signupForm"

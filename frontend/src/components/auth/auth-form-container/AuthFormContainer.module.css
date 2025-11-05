@@ -1,3 +1,13 @@
+.signupPageHeight {height: 550px;}
+
+.loginPageHeight {height: 390px;}
+
+.forgotPasswordPageHeight {height: 310px;}
+
+.resetPasswordPageHeight {height: 390px;}
+
+.forgotPasswordVerificationPageHeight {height: 390px;}
+
 .authFormPageContainer {
     position: fixed;
     top: 0;

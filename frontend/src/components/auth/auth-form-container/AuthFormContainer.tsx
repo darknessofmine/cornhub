@@ -7,19 +7,24 @@ import { NotificationPopupContext } from '../../../context/NotificationPopupCont
 
 
 interface Props {
-  heightOld?: (() => string | undefined | null) | string | null,
-  heightNew: string,
+  defaultHeight: string,
+  children: React.ReactNode,
 };
-type PropsWithChildren = React.PropsWithChildren<Props>;
 
 
-export const AuthFormContainer: React.FC<PropsWithChildren> = ({
-  heightOld = null,
-  heightNew,
-  children ,
-}) => {
-  const [containerHeight, setContainerHeight] = React.useState(heightOld || heightNew);
-  const notificationContext = React.useContext(NotificationPopupContext)
+export const AuthFormContainer: React.FC<Props> = ({ defaultHeight, children }) => {
+  const [containerHeight, setContainerHeight] = React.useState((): string => {
+    const lastVisitedPage = localStorage.getItem('lastVisitedPage');
+    if (lastVisitedPage === '/login') return styles.loginPageHeight;
+    if (lastVisitedPage === '/signup') return styles.signupPageHeight;
+    if (lastVisitedPage === '/forgot-password') return styles.forgotPasswordPageHeight;
+    if (lastVisitedPage?.startsWith('/reset-password')) return styles.resetPasswordPageHeight;
+    if (lastVisitedPage?.startsWith('/forgot-password/verification')) {
+      return styles.forgotPasswordVerificationPageHeight;
+    }
+    return defaultHeight;
+  });
+  const notificationContext = React.useContext(NotificationPopupContext);
   const location = useLocation();
 
   React.useEffect(() => {
@@ -29,22 +34,21 @@ export const AuthFormContainer: React.FC<PropsWithChildren> = ({
   }, [location.pathname]);
 
   React.useEffect(() => {
-    if (!heightOld) return;
-
     const timeout = setTimeout(() => {
-      setContainerHeight(heightNew);
+      setContainerHeight(defaultHeight);
     }, 10);
     return () => clearTimeout(timeout);
-  }, [heightOld, heightNew]);
+  }, [defaultHeight]);
 
   return (
     <main>
       <div className={styles.authFormPageContainer}>
         <div className={`${styles.authFormContainer} ${containerHeight}`}>
           <div className={styles.authFormHeader}>
-              CORN
-              <div className={styles.headerSecondPart} >HUB</div>
-            </div>
+            CORN
+            <div className={styles.headerSecondPart}>HUB</div>
+          </div>
+
           <div className={styles.formContentContainer}>
             {children}
           </div>
