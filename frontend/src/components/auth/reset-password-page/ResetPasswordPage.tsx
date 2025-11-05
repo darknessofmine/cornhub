@@ -32,7 +32,7 @@ export const ResetPasswordPage: React.FC = () => {
     const redirectedFrom = location.state?.from;
     if (!redirectedFrom || !redirectedFrom.startsWith('/forgot-password/verification')) {
       localStorage.setItem('lastVisitedPage', localStorage.getItem('secondLastPage') || '');
-      navigate('/forgot-password', { state: {} });
+      navigate('/forgot-password', { state: {}, replace: true });
     }
   }, []);
 
@@ -52,10 +52,8 @@ export const ResetPasswordPage: React.FC = () => {
     setIsPasswordValid(true);
 
     const timeout = setTimeout(() => {
-      if (!validateFormFields()) {
-        return;
-      }
-      navigate('/login', { state: { from: location.pathname }, replace: true },)
+      if (!validateFormFields()) return;
+      navigate('/login', { state: { from: location.pathname }});
     }, 10);
   
     return () => {

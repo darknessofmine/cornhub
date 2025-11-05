@@ -23,8 +23,8 @@ const App: React.FC = () => {
           <Route path='/login' element={<LoginPage/>}/>
           <Route path='/signup' element={<SignupPage/>}/>
           <Route path='/forgot-password' element={<ForgotPasswordPage/>}/>
-          <Route path='/forgot-password/verification' element={<VerificationPage/>}/>
-          <Route path='/reset-password' element={<ResetPasswordPage/>}/>
+          <Route path='/forgot-password/verification/:id' element={<VerificationPage/>}/>
+          <Route path='/reset-password/:id' element={<ResetPasswordPage/>}/>
         </Route>
 
         <Route path='/' element={<MainLayout/>}>

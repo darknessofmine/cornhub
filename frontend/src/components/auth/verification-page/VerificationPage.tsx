@@ -21,7 +21,7 @@ export const VerificationPage: React.FC = () => {
     const redirectedFrom = location.state?.from;
     if (redirectedFrom !== '/forgot-password') {
       localStorage.setItem('lastVisitedPage', localStorage.getItem('secondLastPage') || '');
-      navigate('/forgot-password', { state: {} });
+      navigate('/forgot-password', { state: {}, replace: true });
     }
   }, []);
 
@@ -66,7 +66,10 @@ export const VerificationPage: React.FC = () => {
         setIsVerificationValid(false);
         return;
       }
-      navigate('/reset-password', {state: { from: location.pathname }})
+      navigate(
+        `/reset-password/${crypto.randomUUID()}`,
+        {state: { from: location.pathname }},
+      );
     }, 10);
     return () => clearTimeout(timeout);
   };

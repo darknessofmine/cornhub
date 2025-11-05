@@ -60,7 +60,10 @@ export const ForgotPasswordPage: React.FC = () => {
         return;
       }
       localStorage.removeItem('newCodeTimerStarted');
-      navigate('/forgot-password/verification', { state: { from: location.pathname } });
+      navigate(
+        `/forgot-password/verification/${crypto.randomUUID()}`,
+        { state: { from: location.pathname } },
+      );
     }, 10);
     return () => clearTimeout(timeout);
   };
