@@ -19,7 +19,10 @@ export const VerificationPage: React.FC = () => {
 
   React.useEffect(() => {
     const redirectedFrom = location.state?.from;
-    if (redirectedFrom !== '/forgot-password') {
+    if (
+      typeof redirectedFrom !== 'string' ||
+      redirectedFrom !== '/forgot-password'
+    ) {
       localStorage.setItem('lastVisitedPage', localStorage.getItem('secondLastPage') || '');
       navigate('/forgot-password', { state: {}, replace: true });
     }

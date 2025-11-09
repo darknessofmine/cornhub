@@ -9,7 +9,7 @@ import { ProtectedRoute } from './components/common/protected-route/ProtectedRou
 import { ForgotPasswordPage } from './components/auth/forgot-password-page/ForgotPasswordPage';
 import { HomePage } from './components/home-page/HomePage';
 import { LoginPage } from './components/auth/login-page/LoginPage';
-import { PageNotFound } from './components/page-not-found/PageNotFound';
+import { PageNotFound } from './components/error-pages/page-not-found/PageNotFound';
 import { ResetPasswordPage } from './components/auth/reset-password-page/ResetPasswordPage';
 import { SignupPage } from './components/auth/signup-page/SignupPage';
 import { VerificationPage } from './components/auth/verification-page/VerificationPage';

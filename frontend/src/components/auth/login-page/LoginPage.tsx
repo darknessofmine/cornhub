@@ -24,6 +24,8 @@ export const LoginPage: React.FC = () => {
 
   React.useEffect(() => {
     const redirectedFrom = location.state?.from;
+    if (typeof redirectedFrom !== 'string')return;
+
     if (redirectedFrom?.startsWith('/reset-password')) {
       notificationContext.setPopupMesage('Your password has been changed');
       notificationContext.setIsOpened(true);

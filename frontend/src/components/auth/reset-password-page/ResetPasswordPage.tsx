@@ -30,7 +30,10 @@ export const ResetPasswordPage: React.FC = () => {
 
   React.useEffect(() => {
     const redirectedFrom = location.state?.from;
-    if (!redirectedFrom || !redirectedFrom.startsWith('/forgot-password/verification')) {
+    if (
+      typeof redirectedFrom !== 'string' ||
+      !redirectedFrom.startsWith('/forgot-password/verification')
+    ) {
       localStorage.setItem('lastVisitedPage', localStorage.getItem('secondLastPage') || '');
       navigate('/forgot-password', { state: {}, replace: true });
     }
