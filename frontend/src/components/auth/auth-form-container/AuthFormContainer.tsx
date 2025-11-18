@@ -22,6 +22,7 @@ export const AuthFormContainer: React.FC<Props> = ({ defaultHeight, children }) 
     if (lastVisitedPage?.startsWith('/forgot-password/verification')) {
       return styles.forgotPasswordVerificationPageHeight;
     }
+    if (lastVisitedPage === '/error-page') return styles.errorPageHeight;
     return defaultHeight;
   });
   const notificationContext = React.useContext(NotificationPopupContext);

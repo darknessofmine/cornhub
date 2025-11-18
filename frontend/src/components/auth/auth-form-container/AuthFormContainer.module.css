@@ -8,6 +8,8 @@
 
 .forgotPasswordVerificationPageHeight {height: 390px;}
 
+.errorPageHeight {height: 310px;}
+
 .authFormPageContainer {
     position: fixed;
     top: 0;

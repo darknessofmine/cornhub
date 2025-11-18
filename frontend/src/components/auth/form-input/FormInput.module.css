@@ -37,7 +37,7 @@
 
     font-size: 15px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    border-radius: 8px;
+    border-radius: 12px;
 
     transition:
         font-size 0.2s ease,
