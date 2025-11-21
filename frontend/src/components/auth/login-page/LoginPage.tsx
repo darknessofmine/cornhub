@@ -6,7 +6,7 @@ import { AuthFormContainer } from '../auth-form-container/AuthFormContainer';
 import { ButtonSubmit } from '../button-confirm/ButtonSubmit';
 import { ButtonText } from '../button-text/ButtonText';
 import { FormInput } from '../form-input/FormInput';
-import { NotificationPopupContext } from '../../../context/NotificationPopupContext';
+import { NotificationPopupContext } from '../../../contexts/NotificationPopupContext';
 
 
 export const LoginPage: React.FC = () => {
@@ -62,10 +62,9 @@ export const LoginPage: React.FC = () => {
     setIsPasswordValid(true);
     
     const timeout = setTimeout(() => {
-      if (!validateFormFields()) {
-        return;
+      if (validateFormFields()) {
+        console.log('Validation passed');
       }
-      console.log('Validation passed');
     }, 10);
     return () => clearTimeout(timeout);
   };

@@ -64,18 +64,24 @@ export const VerificationPage: React.FC = () => {
     e.preventDefault();
     setIsVerificationValid(true);
 
-    const timeout = setTimeout(() => {
-      if (!verificationCodeField) {
-        setIsVerificationValid(false);
-        return;
+    const validationTimeout = setTimeout(() => {
+      if (validateVerificationCodeField()) {
+        navigate(
+          `/reset-password/${crypto.randomUUID()}`,
+          {state: { from: location.pathname }},
+        );
       }
-      navigate(
-        `/reset-password/${crypto.randomUUID()}`,
-        {state: { from: location.pathname }},
-      );
     }, 10);
-    return () => clearTimeout(timeout);
+    return () => clearTimeout(validationTimeout);
   };
+
+  const validateVerificationCodeField = (): boolean => {
+    if (!verificationCodeField || verificationCodeField.length !== 4) {
+      setIsVerificationValid(false);
+      return false;
+    }
+    return true;
+  }
 
   const handleNewCodeButtonClick = (): void => {
     setIsSendButtonActive(false);

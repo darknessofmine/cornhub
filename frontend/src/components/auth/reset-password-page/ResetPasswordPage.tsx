@@ -55,8 +55,9 @@ export const ResetPasswordPage: React.FC = () => {
     setIsPasswordValid(true);
 
     const timeout = setTimeout(() => {
-      if (!validateFormFields()) return;
-      navigate('/login', { state: { from: location.pathname }});
+      if (validateFormFields()) {
+        navigate('/login', { state: { from: location.pathname }})
+      }
     }, 10);
   
     return () => {

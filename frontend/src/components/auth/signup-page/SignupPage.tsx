@@ -72,14 +72,13 @@ export const SignupPage: React.FC = () => {
     setIsUsernameValid(true);
     setIsPasswordValid(true);
 
-    const timeout = setTimeout(() => {
-      if (!validateFormFields()) {
-        return;
+    const validationTimeout = setTimeout(() => {
+      if (validateFormFields()) {
+        console.log('validation passed!');
       }
-      console.log('validation passed!');
     }, 10);
     return () => {
-      clearTimeout(timeout);
+      clearTimeout(validationTimeout);
       if (passwordTimeoutRef.current) {
         clearTimeout(passwordTimeoutRef.current);
       }

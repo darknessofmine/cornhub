@@ -1,6 +1,6 @@
 import type React from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
-import { NotificationPopupProvider } from '../../../context/NotificationPopupContext';
+import { NotificationPopupProvider } from '../../../contexts/NotificationPopupContext';
 
 
 export const AuthRoute: React.FC = () => {

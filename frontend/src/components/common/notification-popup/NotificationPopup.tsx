@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './NotificationPopup.module.css';
 import checkMark from '../../../../src/assets/green-check-mark.png'
-import { NotificationPopupContext } from '../../../context/NotificationPopupContext';
+import { NotificationPopupContext } from '../../../contexts/NotificationPopupContext';
 
 
 export const NotificationPopup: React.FC = () => {

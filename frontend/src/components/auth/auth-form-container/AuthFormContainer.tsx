@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 import styles from './AuthFormContainer.module.css';
 import { NotificationPopup } from '../../common/notification-popup/NotificationPopup';
-import { NotificationPopupContext } from '../../../context/NotificationPopupContext';
+import { NotificationPopupContext } from '../../../contexts/NotificationPopupContext';
 
 
 interface Props {

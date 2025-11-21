@@ -31,13 +31,13 @@ export const PageNotFound: React.FC = () => {
   return (
     <AuthFormContainer defaultHeight={styles.pageNotFoundHeight}>
       <div className={styles.pageNotFoundFormContainer}>
-        <div className={styles.pageNotFoundQuestionContainer}>?</div>
+        <div className={styles.pageNotFoundQuestionContainer}>{'?'}</div>
         <div className={styles.pageNotFoundContent}>
 
           <div className={styles.pageNotFoundTextContent}>
             <p className={styles.pageNotFoundErrorCode}>{'404'}</p>
             <p className={styles.pageNotFoundMessage}>
-              {"Suddenly, page you are looking for doesn't exist :("}
+              {"Such page doesn't exist :("}
             </p>
           </div>
 

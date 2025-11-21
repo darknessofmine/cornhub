@@ -47,26 +47,31 @@ export const ForgotPasswordPage: React.FC = () => {
     e.preventDefault();
     setIsEmailValid(true);
 
-    const timeout = setTimeout(() => {
-      if (!validateInputField(forgotPasswordForm.email)) {
-        setEmailFieldMessage('');
-        setIsEmailValid(false);
-        return;
+    const verificationTimeout = setTimeout(() => {
+      if (validateFormFields()) {
+        localStorage.removeItem('newCodeTimerStarted');
+        navigate(
+          `/forgot-password/verification/${crypto.randomUUID()}`,
+          { state: { from: location.pathname } },
+        );
       }
-
-      if (!validateEmail(forgotPasswordForm.email)) {
-        setEmailFieldMessage('Invalid email')
-        setIsEmailValid(false);
-        return;
-      }
-      localStorage.removeItem('newCodeTimerStarted');
-      navigate(
-        `/forgot-password/verification/${crypto.randomUUID()}`,
-        { state: { from: location.pathname } },
-      );
     }, 10);
-    return () => clearTimeout(timeout);
+    return () => clearTimeout(verificationTimeout);
   };
+
+  const validateFormFields = (): boolean => {
+    if (!validateInputField(forgotPasswordForm.email)) {
+      setEmailFieldMessage('');
+      setIsEmailValid(false);
+      return false;
+    }
+    if (!validateEmail(forgotPasswordForm.email)) {
+      setEmailFieldMessage('Invalid email')
+      setIsEmailValid(false);
+      return false;
+    }
+    return true;
+  }
 
   const handleBackButtonClick = (): void => {
     navigate('/login', { state: { from: location.pathname } });
