@@ -1,0 +1,29 @@
+.menuOptionContainer {
+    margin-top: 3px;
+    padding: 0px 10px;
+    width: calc(100% - 15px);
+    height: 45px;
+
+    font-size: 18px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border-radius: 10px;
+
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.menuOptionContainer:hover {
+    background-color: #eeeeee;
+    cursor: pointer;
+}
+
+.menuOptionContainer.selected {
+    background-color: #cccccc;
+}
+
+.menuOptionContainer.selected:hover {
+    background-color: #dddddd;
+}

@@ -20,7 +20,7 @@ export const FormInput: React.FC<Props> = ({
   name,
   type = 'text',
   label,
-  value = null,
+  value = undefined,
   placeholder = '',
   isValid = true,
   notificationMessage = null,
@@ -66,7 +66,7 @@ export const FormInput: React.FC<Props> = ({
         type={type}
         id={name}
         name={name}
-        value={value || undefined}
+        value={value}
         placeholder={placeholder}
         onChange={handleChange}
         autoComplete={autoComplete}

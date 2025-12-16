@@ -64,6 +64,8 @@ export const LoginPage: React.FC = () => {
     const timeout = setTimeout(() => {
       if (validateFormFields()) {
         console.log('Validation passed');
+        localStorage.setItem('authToken', 'token');
+        navigate('/', { state: { from: location.pathname } });
       }
     }, 10);
     return () => clearTimeout(timeout);

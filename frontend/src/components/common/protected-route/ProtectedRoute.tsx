@@ -4,7 +4,7 @@ import { Navigate, Outlet, useLocation } from 'react-router-dom';
 
 export const ProtectedRoute: React.FC = () => {
   const location = useLocation();
-  const isLoggedIn: boolean = false;
+  const isLoggedIn: boolean = localStorage.getItem('authToken') === 'token';
   
   if (isLoggedIn)
     return <Outlet/>

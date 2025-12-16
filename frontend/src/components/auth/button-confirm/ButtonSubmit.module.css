@@ -12,13 +12,13 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: white;
     background-color: rgba(93, 163, 163, 0.8);
-    border-radius: 12px;
+    border-radius: 16px;
 
     transition: transform 0.2s ease-in-out, background-color 0.2s ease;
 }
 
 .buttonSubmit:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .buttonSubmit:active {

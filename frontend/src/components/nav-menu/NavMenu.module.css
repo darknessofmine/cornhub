@@ -1,0 +1,144 @@
+@keyframes slide-in {
+    0%   {transform: translateX(-100%);}
+    100% {transform: translateX(   0%);}
+}
+
+@keyframes slide-out {
+    0%   {transform: translateX(   0%);}
+    100% {transform: translateX(-100%);}
+}
+
+@keyframes darken-background{
+    0% {background-color: rgba(0 0 0 / 0%);}
+    100% {background-color: rgba(0 0 0 / 50%);}
+}
+
+@keyframes lighten-background{
+    0% {background-color: rgba(0 0 0 / 50%);}
+    100% {background-color: rgba(0 0 0 / 0%);}
+}
+
+
+.menuHeaderContainer {
+    position: fixed;
+    padding-top: 10px;
+    padding-left: 20px;
+
+
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: flex-start;
+}
+
+.menuButtonContainer {
+    height: 50px;
+    width: 50px;
+
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.menuButtonContainer:hover {
+    background-color: #ffffff;
+}
+
+
+.menuOverlay {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+
+    height: 100dvh;
+    width: 100dvw;
+    
+    background-color: rgba(0 0 0 / 50%);
+    z-index: 10000;
+}
+
+.menuOverlay.darkBackgound {
+    animation: darken-background 0.21s ease-out;
+}
+
+.menuOverlay.lightBackground {
+    animation: lighten-background 0.21s ease-out;
+}
+
+.menuContainer {
+    position: relative;
+
+    height: 100dvh;
+    width: 250px;
+
+    background-color: white;
+    overflow: auto;
+}
+
+.menuContainer::-webkit-scrollbar {
+    background-color: none;
+}
+
+.menuSlideIn {
+    animation: slide-in 0.2s ease;
+}
+
+.menuSlideOut {
+    animation: slide-out 0.2s ease;
+}
+
+.navMenu {
+    padding-top: 10px;
+    height: 110%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.authFormHeader {
+    height: 50px;
+    margin-left: 10px;
+
+    font-size: 22px;
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.authFormHeader .headerSecondPart {
+    width: 48px;
+
+    color: white;
+    background-color: brown;
+    border-radius: 5px;
+
+    display: flex;
+    justify-content: center;
+}
+
+.menuHeaderContainer.stickyHeader {
+    position: sticky;
+    top: 0px;
+    padding-left: 20px;
+
+    height: 70px;
+    width: 100%;
+    
+    background-color: white;
+}
+
+.stickyHeader .menuButtonContainer:hover {
+    background-color: #e5e5e5;
+}

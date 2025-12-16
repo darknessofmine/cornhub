@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styles from './NotificationPopup.module.css';
-import checkMark from '../../../../src/assets/green-check-mark.png'
+import CheckMark from '../../../../src/assets/green-check-mark.png'
 import { NotificationPopupContext } from '../../../contexts/NotificationPopupContext';
 
 
@@ -13,10 +13,10 @@ export const NotificationPopup: React.FC = () => {
     if (context.isOpened) {
       setIsPopupVisible(true);
     } else {
-      const bounceOutTimeout1 = setTimeout(() => {
+      const bounceOutTimeout = setTimeout(() => {
         setIsPopupVisible(false);
       }, 400);
-      return () => clearTimeout(bounceOutTimeout1);
+      return () => clearTimeout(bounceOutTimeout);
     }
   }, [context.isOpened]);
 
@@ -36,7 +36,7 @@ export const NotificationPopup: React.FC = () => {
         >
           <div className={styles.notificationPopupContent}>
             <div className={styles.imageContainer}>
-              <img src={checkMark}/>
+              <img src={CheckMark}/>
             </div>
             
             <div className={styles.textContainer}>

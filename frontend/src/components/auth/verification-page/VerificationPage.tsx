@@ -13,7 +13,7 @@ export const VerificationPage: React.FC = () => {
   const [isVerificationValid, setIsVerificationValid] = React.useState<boolean>(true);
   
   const [isSendButtonActive, setIsSendButtonActive] = React.useState<boolean>(false);
-  const [sendTimer, setSendTimer] = React.useState<number>(60);
+  const [codeTimer, setCodeTimer] = React.useState<number>(60);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -35,7 +35,7 @@ export const VerificationPage: React.FC = () => {
     } else {
       const secondsPassed = Math.floor((new Date().getTime() - Number(timerStarted)) / 1000);
       if (secondsPassed < 60) {
-        setSendTimer(60 - secondsPassed);
+        setCodeTimer(60 - secondsPassed);
       } else {
         setIsSendButtonActive(true);
       }
@@ -45,16 +45,16 @@ export const VerificationPage: React.FC = () => {
   React.useEffect(() => {
     if (!isSendButtonActive) {
       const sendInterval = setInterval(() => {
-        setSendTimer(sendTimer - 1);
-        if (sendTimer === 1) {
+        setCodeTimer(codeTimer - 1);
+        if (codeTimer === 1) {
           setIsSendButtonActive(true);
-          setSendTimer(60);
+          setCodeTimer(60);
           return;
         }
       }, 1000);
       return () => clearInterval(sendInterval);
     }
-  }, [isSendButtonActive, sendTimer]);
+  }, [isSendButtonActive, codeTimer]);
  
   const handleFormChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setVerificationCodeField(e.target.value);
@@ -85,7 +85,7 @@ export const VerificationPage: React.FC = () => {
 
   const handleNewCodeButtonClick = (): void => {
     setIsSendButtonActive(false);
-    setSendTimer(60);
+    setCodeTimer(60);
     localStorage.setItem('newCodeTimerStarted', new Date().getTime().toString());
   };
 
@@ -121,7 +121,7 @@ export const VerificationPage: React.FC = () => {
                   Send new verification code
                 </div>
               : <div className={styles.newCodeTimer}>
-                  New code will be available in: {sendTimer}s
+                  New code will be available in: {codeTimer}s
                 </div>
             }
           </div>
